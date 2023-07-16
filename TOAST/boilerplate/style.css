@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Open Sans', sans-serif;
+}
+
+:root {
+	--dark: #34495e;
+	--gray: #aeb0d7;
+	--light: #ffffff;
+	--success: #0abf30;
+	--error: #e24d4c;
+	--warning: #e9bd0c;
+	--info: #3498db;
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	background: var(--dark);
+}
+
+.notifications {
+	position: fixed;
+	top: 30px;
+	right: 20px;
+}
+
+.toast,
+.column {
+	display: flex;
+	align-items: center;
+}
+
+.notifications .toast {
+	position: relative;
+	overflow: hidden;
+	width: 400px;
+	list-style-type: none;
+	border-radius: 4px;
+	padding: 16px 17px;
+	margin-bottom: 10px;
+	background: var(--light);
+	justify-content: space-between;
+	animation: show_toast 2000ms ease forwards;
+}
+
+@keyframes show_toast {
+	0% {
+		transform: translateX(100%);
+	}
+	50% {
+		transform: translateX(-5%);
+	}
+	100% {
+		transform: translateX(0%);
+	}
+}
+
+.notifications .toast.hide {
+	animation: hide_toast 1000ms ease forwards;
+}
+
+@keyframes hide_toast {
+	0% {
+		transform: translateX(0%);
+	}
+
+	50% {
+        opacity:0;
+	}
+
+	100% {
+		transform: translateX(100%); 
+	}
+}
+
+.toast::before {
+	position: absolute;
+	content: '';
+	left: 0;
+	bottom: 0;
+	height: 3px;
+	width: 100%;
+	animation: progress 5s linear forwards;
+}
+
+@keyframes progress {
+	100% {
+		width: 0%;
+	}
+}
+
+.toast.success::before,
+.btn#success {
+	background: var(--success);
+}
+.toast.error::before,
+.btn#error {
+	background: var(--error);
+}
+.toast.warning::before,
+.btn#warning {
+	background: var(--warning);
+}
+.toast.info::before,
+.btn#info {
+	background: var(--info);
+}
+
+.toast.success .column i {
+	color: var(--success);
+}
+
+.toast.error .column i {
+	color: var(--error);
+}
+
+.toast.warning .column i {
+	color: var(--warning);
+}
+
+.toast.info .column i {
+	color: var(--info);
+}
+
+.toast .column i {
+	font-size: 22px;
+}
+
+.toast .column span {
+	font-size: 17px;
+	margin-left: 12px;
+}
+
+.toast i:last-child {
+	color: var(--gray);
+	cursor: pointer;
+}
+
+.toast i:last-child:hover {
+	color: var(--dark);
+}
+
+.buttons .btn {
+	border: none;
+	outline: none;
+	color: var(--light);
+	cursor: pointer;
+	margin: 0 5px;
+	padding: 10px 20px;
+	border-radius: 4px;
+}
